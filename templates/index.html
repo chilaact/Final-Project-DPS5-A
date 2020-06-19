@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="main">
+  <div class="title">
+    <h3>Plant Diseases Classifier</h3>
+  </div>
+  
+  <p>Your story, it is a tale.<br>
+    Told by an idiot, full of sound and fury.<br>
+    Signifying nothing.<br><br>
+  -Memories of Nobody</p>
+
+  <div style="display: flex; text-align: center;">
+    <div>
+      <img src="{{ url_for('static', filename='img/apple.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='apple') }}">
+        <button class="button">Classify Apple Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/cherry.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='cherry') }}">
+        <button class="button">Classify Cherry Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/corn.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='corn') }}">
+        <button class="button">Classify Corn Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/grape.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='grape') }}">
+        <button class="button">Classify Grape Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/peach.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='peach') }}">
+        <button class="button">Classify Peach Leaf</button>
+      </a>
+    </div>
+  </div><br>
+  
+  <div style="display: flex; text-align: center;">
+    <div>
+      <img src="{{ url_for('static', filename='img/pepper.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='pepper') }}">
+        <button class="button">Classify Pepper Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/potato.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='potato') }}">
+        <button class="button">Classify Potato Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/strawberry.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='strawberry') }}">
+        <button class="button">Classify Strawberry Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/tomato.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='tomato') }}">
+        <button class="button">Classify Tomato Leaf</button>
+      </a>
+    </div>&emsp;&emsp;
+    
+    <div>
+      <img src="{{ url_for('static', filename='img/others.jpg') }}" width="200px" height="200px"><br>
+      <a href="{{ url_for('diagnose', plant='others') }}">
+        <button class="button">Classify Other Leaf</button>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

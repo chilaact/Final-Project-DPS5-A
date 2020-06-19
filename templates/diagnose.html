@@ -1,0 +1,40 @@
+{% extends "/base.html" %}
+{% block content %}
+
+<div class="main">
+  <div class="title">
+    <h3>Diagnose desease of the {{ plant }} plant</h3>
+  </div>
+
+  {% for sp in species %}
+  {{sp}}<br>
+  {% endfor %}
+  
+  <div class="panel">
+    <form method="POST" enctype="multipart/form-data">
+      <input id="file-upload" class="hidden" name="gambar" type="file" accept="image/x-png,image/gif,image/jpeg" />
+      <label for="file-upload" id="file-drag" class="upload-box">
+        <div id="upload-caption">Drop image here or click to <b>select</b></div>
+        <img id="image-preview" class="hidden" />
+      </label>
+      <center><input type="submit" value="Diagnose" class="button"/></center><br>
+    </form>
+  </div>
+
+  <div style="margin-bottom: 2rem; text-align: center;">
+    <input type="button" value="Clear" class="button" onclick="clearImage();" />
+    <a href="{{ url_for('index') }}" class="button">Home</a>
+  </div>
+
+  <div id="image-box">
+    <img id="image-display">
+
+    <div id="pred-result" class="hidden">
+    </div>
+    <svg id="loader" class="hidden" viewBox="0 0 32 32" width="32" height="32">
+      <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+    </svg>
+  </div>
+</div>
+
+{% endblock %}

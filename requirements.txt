@@ -1,0 +1,6 @@
+gunicorn
+flask
+numpy
+scikit-image
+setuptools==41.0.0
+tensorflow-cpu
