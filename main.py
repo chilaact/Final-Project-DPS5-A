@@ -4,10 +4,10 @@ from skimage import io, transform
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 app = Flask(__name__)
-model = load_model('mobilenet.h5')
+model = load_model('notebooks/mobilenetv2.h5')
 
 # ntar awakmu atur sendiri lah ini enak'e piye
 spesies = ['Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 'Apple___healthy', 'Blueberry___healthy', 'Cherry_(including_sour)___Powdery_mildew',
@@ -26,7 +26,7 @@ def index():
 def modeling():
   return render_template('Modeling.html')
 
-@app.route('/diagnose/<plant>', methods=['GET', 'POST'])
+@app.route('/diagnose/<plant>')
 def diagnose(plant):
   global spesies
   
@@ -35,6 +35,10 @@ def diagnose(plant):
   else:
     species = [sp for sp in spesies if plant.capitalize() in sp]
 
+  return render_template('diagnose.html', plant = plant, species = species)
+
+@app.route('/prediksi/<plant>', methods=['POST'])
+def prediksi(plant):
   if request.method == "POST":
     img = io.imread(request.files['gambar'])
     img = array([transform.resize(img, (224, 224))])
@@ -42,16 +46,19 @@ def diagnose(plant):
     pred = model.predict(img)
     
     if plant == 'others':
+      species = ['Blueberry___healthy', 'Orange___Haunglongbing_(Citrus_greening)', 'Raspberry___healthy', 'Soybean___healthy', 'Squash___Powdery_mildew']
       indeks = [4, 15, 23, 24, 25]
     else:
+      species = [sp for sp in spesies if plant.capitalize() in sp]
       indeks = [i for i, e in enumerate(spesies) if plant.capitalize() in e]
     
     hasil = [pred[0][i] for i in indeks]
     hasil = list(map(abs, hasil))
     hasil_akhir = [i/sum(hasil)*100 for i in hasil]
    
-    hasil = dict(zip(species, hasil_akhir))
+    result = dict(zip(species, hasil_akhir))
 
-    return hasil
+    return jsonify(result = result)
+  pass
 
-  return render_template('diagnose.html', plant = plant, species = species)
+app.run(debug=True)

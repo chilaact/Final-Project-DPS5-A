@@ -11,13 +11,13 @@
   {% endfor %}
   
   <div class="panel">
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST">
       <input id="file-upload" class="hidden" name="gambar" type="file" accept="image/x-png,image/gif,image/jpeg" />
       <label for="file-upload" id="file-drag" class="upload-box">
         <div id="upload-caption">Drop image here or click to <b>select</b></div>
         <img id="image-preview" class="hidden" />
       </label>
-      <center><input type="submit" value="Diagnose" class="button"/></center><br>
+      <center><input type="submit" value="Diagnose" class="button" onclick="addShow();"></center><br>
     </form>
   </div>
 
@@ -28,8 +28,14 @@
 
   <div id="image-box">
     <img id="image-display">
-
     <div id="pred-result" class="hidden">
+      <span id="result"></span>
+      <script>
+        function addShow() {
+          var response = JSON.parse(req.responseText)
+          document.getElementById('result').innerHTML = response.result
+        }
+      </script>
     </div>
     <svg id="loader" class="hidden" viewBox="0 0 32 32" width="32" height="32">
       <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
