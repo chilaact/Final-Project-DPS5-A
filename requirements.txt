@@ -1,6 +1,7 @@
 gunicorn
 flask
 numpy
+pyrebase
 scikit-image
 setuptools==41.0.0
 tensorflow-cpu
