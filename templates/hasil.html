@@ -1,0 +1,26 @@
+{% extends "/base.html" %}
+{% block content %}
+
+<p align=center>
+  Given image<br>
+  <img src="{{ img }}">
+</p>
+<center>
+  Results:<br>
+  <table style="width:45%;" border="1px">
+    <tr>
+      <th>Species</th>
+      <th>Probability</th> 
+    </tr>
+    {% for i, j in result.items() %}
+    <tr>
+      <td>{{ i }}</td>
+      <td>{{ j }}</td>
+    </tr>{% endfor %}
+  </table><br><br>
+
+  <a href="{{ url_for('index') }}" class="button">Home</a>&emsp;
+  <a href="{{ url_for('diagnose', plant = plant) }}" class="button">Classify again</a><br><br>
+</center>
+
+{% endblock %}

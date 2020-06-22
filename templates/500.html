@@ -1,0 +1,17 @@
+{% extends "/base.html" %}
+{% block content %}
+
+<center>
+  <h3>This image resolution isn't suitable for our classifier</h3>
+</center>
+
+<p align=center>
+  <img src="{{ img }}" width="50%" height="50%">
+</p>
+
+<center>
+  <h3>Please using the image which have same resolution (256x256)</h3>
+  <a href="{{ url_for('diagnose', plant = plant) }}" class="button">Back</a>
+</center>
+
+{% endblock %}
